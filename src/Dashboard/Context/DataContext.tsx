@@ -276,8 +276,6 @@ interface DataContextType {
 
   // ===== PURCHASE INVOICES MODULE =====
   purchaseInvoices: PurchaseInvoiceRecord[];
-  purchaseInvoicesLoading: boolean;
-  purchaseInvoicesError: string | null;
   setPurchaseInvoices: React.Dispatch<
     React.SetStateAction<PurchaseInvoiceRecord[]>
   >;
@@ -324,15 +322,12 @@ interface DataContextType {
 
   // ===== RECEIPT VOUCHERS MODULE =====
   receiptVouchers: ReceiptVoucher[];
-  receiptVouchersLoading: boolean;
-  receiptVouchersError: string | null;
   setReceiptVouchers: React.Dispatch<React.SetStateAction<ReceiptVoucher[]>>;
   loadReceiptVouchers: () => Promise<ReceiptVoucher[]>;
 
   // ===== PAYMENT VOUCHERS MODULE =====
   paymentVouchers: PaymentVoucher[];
-  paymentVouchersLoading: boolean;
-  paymentVouchersError: string | null;
+
   setPaymentVouchers: React.Dispatch<React.SetStateAction<PaymentVoucher[]>>;
   loadPaymentVouchers: () => Promise<PaymentVoucher[]>;
 
@@ -586,10 +581,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   const [purchaseInvoices, setPurchaseInvoices] = useState<
     PurchaseInvoiceRecord[]
   >([]);
-  const [purchaseInvoicesLoading, setPurchaseInvoicesLoading] = useState(false);
-  const [purchaseInvoicesError, setPurchaseInvoicesError] = useState<
-    string | null
-  >(null);
+
   // ===== GRN STATE =====
   const [grns, setGrns] = useState<GRNRecord[]>([]);
   const [grnsLoading, setGrnsLoading] = useState(false);
@@ -608,16 +600,10 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   const [expensesError, setExpensesError] = useState<string | null>(null);
   // ===== RECEIPT VOUCHERS STATE =====
   const [receiptVouchers, setReceiptVouchers] = useState<ReceiptVoucher[]>([]);
-  const [receiptVouchersLoading, setReceiptVouchersLoading] = useState(false);
-  const [receiptVouchersError, setReceiptVouchersError] = useState<
-    string | null
-  >(null);
+
   // ===== PAYMENT VOUCHERS STATE =====
   const [paymentVouchers, setPaymentVouchers] = useState<PaymentVoucher[]>([]);
-  const [paymentVouchersLoading, setPaymentVouchersLoading] = useState(false);
-  const [paymentVouchersError, setPaymentVouchersError] = useState<
-    string | null
-  >(null);
+
   // ===== QUOTATIONS STATE =====
   const [quotations, setQuotations] = useState<api.QuotationRecordPayload[]>(
     []
@@ -2198,8 +2184,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
 
         // ===== PURCHASE INVOICES MODULE =====
         purchaseInvoices,
-        purchaseInvoicesLoading,
-        purchaseInvoicesError,
+
         setPurchaseInvoices,
         loadPurchaseInvoices,
 
@@ -2237,15 +2222,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
 
         // ===== RECEIPT VOUCHERS MODULE =====
         receiptVouchers,
-        receiptVouchersLoading,
-        receiptVouchersError,
+
         setReceiptVouchers,
         loadReceiptVouchers,
 
         // ===== PAYMENT VOUCHERS MODULE =====
         paymentVouchers,
-        paymentVouchersLoading,
-        paymentVouchersError,
+
         setPaymentVouchers,
         loadPaymentVouchers,
 
